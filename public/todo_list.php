@@ -17,7 +17,7 @@
 		<li>Get groceries</li>
 	</ul>
 	<h2>Enter TODO List Items Below</h2>
-	<form> method="POST" action="todo_list.html">
+	<form method="POST" action="my_first_form.php">
 		<p>
 		    <label for="input_item">ENTER TODO LIST ITEM TO ADD</label>
 	        <input id="input_item" name="input_item" type="text" placeholder="Input Item">
@@ -27,4 +27,4 @@
 		</p>
 	</form>
 </body>
-</html>
+</html>s
