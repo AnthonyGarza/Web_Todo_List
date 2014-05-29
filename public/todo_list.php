@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 </head>
@@ -10,11 +10,19 @@
     ?>
 	<h1>TODO List</h1>
 	<ul>
-		<li>Clean room</li>
+		<!-- <li>Clean room</li>
 		<li>Vacuum</li>
 		<li>Wash Dishes</li>
 		<li>Laundry</li>
-		<li>Get groceries</li>
+		<li>Get groceries</li> -->
+
+		<!-- Create an array from your sample todo list items. Use PHP to display the array items within the unordered list in your template and test in your browser -->
+		<?php
+	    $items = array('Clean room', 'Vacuum', 'Wash dishes', 'Get groceries');
+	    foreach ($items as $item) {
+		echo "<li>$item</li>";
+	    }
+	    ?>
 	</ul>
 	<h2>Enter TODO List Items Below</h2>
 	<form method="POST">
