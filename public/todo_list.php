@@ -3,6 +3,32 @@
 <head>
 </head>
 	<title>TODO List</title>
+	<?php
+	define('FILENAME', 'data/todo.txt');
+
+	$filename = 'data/list.txt';
+	$items = array();
+
+	function open_file()
+	{
+	    $filename = 'data/list.txt';
+	    $filesize = filesize($filename);
+	    $read = fopen($filename, 'r');
+	    $list_string = trim(fread($read, $filesize));
+	    $list = explode("\n", $list_string);
+	    return $list;
+	    fclose($read);
+	}
+
+	function save_file($list, $file)
+	{
+	    $write = fopen($file, 'w');
+	    $string = implode("\n", $list);
+	    fwrite($write, $string . "\n");
+	    fclose($write);
+	    echo "The save was succesful.\n";
+	}
+	?>
 <body>
 	<?php
 		var_dump($_GET);
@@ -18,9 +44,13 @@
 
 		<!-- Create an array from your sample todo list items. Use PHP to display the array items within the unordered list in your template and test in your browser -->
 		<?php
-	    $items = array('Clean room', 'Vacuum', 'Wash dishes', 'Get groceries');
+
+		$new_items = open_file();
+        foreach ($new_items as $item) {
+            array_push($items, $item);
+        }
 	    foreach ($items as $item) {
-		echo "<li>$item</li>";
+		echo "<li>$item</li>\n";
 	    }
 	    ?>
 	</ul>
