@@ -20,13 +20,13 @@
 	    fclose($read);
 	}
 
-	function save_file($list, $file)
+	function save_file($list, $filename)
 	{
-	    $write = fopen($file, 'w');
+		$filename = 'data/list.txt';
+	    $write = fopen($filename, 'w');
 	    $string = implode("\n", $list);
 	    fwrite($write, $string . "\n");
 	    fclose($write);
-	    echo "The save was succesful.\n";
 	}
 	?>
 <body>
@@ -36,28 +36,31 @@
     ?>
 	<h1>TODO List</h1>
 	<ul>
-		<!-- <li>Clean room</li>
-		<li>Vacuum</li>
-		<li>Wash Dishes</li>
-		<li>Laundry</li>
-		<li>Get groceries</li> -->
-
-		<!-- Create an array from your sample todo list items. Use PHP to display the array items within the unordered list in your template and test in your browser -->
 		<?php
-
+		// loads TODO list items from a file
 		$new_items = open_file();
         foreach ($new_items as $item) {
             array_push($items, $item);
         }
+
+        // Add TODO items to list and Save to file
+        if (!empty($_POST)) {
+        $items[] = "{$_POST['input_item']}";
+		save_file($items, $filename);
+    	}
+
+    	// displays items
 	    foreach ($items as $item) {
 		echo "<li>$item</li>\n";
 	    }
 	    ?>
 	</ul>
-	<h2>Enter TODO List Items Below</h2>
+
+	<h2>Enter TODO List Items to Add Below</h2>
+
 	<form method="POST">
 		<p>
-		    <label for="input_item">ENTER TODO LIST ITEM TO ADD</label>
+		    <label for="input_item">ENTER TODO LIST ITEM TO ADD:</label>
 	        <input id="input_item" name="input_item" type="text" placeholder="Input Item">
 		</p>
 		<p>
