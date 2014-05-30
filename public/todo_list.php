@@ -38,21 +38,27 @@
 	<ul>
 		<?php
 		// loads TODO list items from a file
-		$new_items = open_file();
-        foreach ($new_items as $item) {
-            array_push($items, $item);
-        }
+		$items = open_file();
 
         // Add TODO items to list and Save to file
         if (!empty($_POST)) {
-        $items[] = "{$_POST['input_item']}";
-		save_file($items, $filename);
+        	array_push($items, $_POST['input_item']);
     	}
 
-    	// displays items
-	    foreach ($items as $item) {
-		echo "<li>$item</li>\n";
+    	// removes link to TODO item thet user clicks on to remove
+    	elseif (isset($_GET['removeIndex'])) {
+    		$removeIndex = $_GET['removeIndex'];
+    		unset($items[$removeIndex]);
+    	}
+
+    	// displays items and provides indexed link to item
+	    foreach ($items as $index => $item) {
+		echo "<li>$item <a href=\"todo_list.php?removeIndex={$index}\">Remove item</a></li>\n";
 	    }
+
+	    // saves TODO list to file
+	    save_file($items, $filename);
+
 	    ?>
 	</ul>
 
