@@ -41,7 +41,7 @@
 		$items = open_file();
 
         // Add TODO items to list and Save to file
-        if (!empty($_POST)) {
+        if (!empty($_POST['input_item'])) {
         	array_push($items, $_POST['input_item']);
     	}
 
