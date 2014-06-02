@@ -77,7 +77,7 @@
 
         // Add TODO items to list and Save to file
         if (!empty($_POST['input_item'])) :
-        	array_push($items, $_POST['input_item']);
+        	array_push($items, htmlspecialchars(strip_tags($_POST['input_item'])));
 
 
     	// removes link to TODO item thet user clicks on to remove
