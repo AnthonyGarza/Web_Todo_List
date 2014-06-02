@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-	<?php
+	<?
 		var_dump($_GET);
 		var_dump($_POST);
     ?>
@@ -9,7 +9,7 @@
 <head>
 </head>
 	<title>TODO List</title>
-	<?php
+	<?
 	define('FILENAME', 'data/todo.txt');
 
 	$filename = 'data/list.txt';
@@ -54,7 +54,7 @@
 			$items = array_merge($items, $uploadedItems);
 			// var_dump($items);
 		} else {
-			echo "Please upload plain text file only.";
+			echo "Please upload .txt file only!";
 		}
 	}
 
@@ -71,25 +71,25 @@
 
 	<h1>TODO List</h1>
 	<ul>
-		<?php
+		<?
 		// loads TODO list items from a file
 		$items = open_file();
 
         // Add TODO items to list and Save to file
-        if (!empty($_POST['input_item'])) {
+        if (!empty($_POST['input_item'])) :
         	array_push($items, $_POST['input_item']);
-    	}
+
 
     	// removes link to TODO item thet user clicks on to remove
-    	elseif (isset($_GET['removeIndex'])) {
+    	elseif (isset($_GET['removeIndex'])) :
     		$removeIndex = $_GET['removeIndex'];
     		unset($items[$removeIndex]);
-    	}
+    	endif;
 
     	// displays items and provides indexed link to item
-	    foreach ($items as $index => $item) {
-		echo "<li>$item <a href=\"todo_list.php?removeIndex={$index}\">Remove item</a></li>\n";
-	    }
+	    foreach ($items as $index => $item) : ?>
+		<?= "<li>$item <a href=\"todo_list.php?removeIndex={$index}\">Remove item</a></li>\n"; ?>
+	    <? endforeach;
 
 	    // saves TODO list to file
 	    save_file($items, $filename);
