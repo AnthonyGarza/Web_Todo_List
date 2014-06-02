@@ -38,20 +38,24 @@
 	$items = open_file($filename);
 	// Verify there were uploaded files and no errors
 	if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
-	    // Set the destination directory for uploads
-	    $upload_dir = '/vagrant/sites/todo.dev/public/uploads/';
-	    // Grab the filename from the uploaded file by using basename
-	    $filename = basename($_FILES['file1']['name']);
-	    // Create the saved filename using the file's original name and our upload directory
-	    $saved_filename = $upload_dir . $filename;
-	    // Move the file from the temp location to our uploads directory
-	    move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+		if ($_FILES['file1']['type'] == 'text/plain') {
+		    // Set the destination directory for uploads
+		    $upload_dir = '/vagrant/sites/todo.dev/public/uploads/';
+		    // Grab the filename from the uploaded file by using basename
+		    $filename = basename($_FILES['file1']['name']);
+		    // Create the saved filename using the file's original name and our upload directory
+		    $saved_filename = $upload_dir . $filename;
+		    // Move the file from the temp location to our uploads directory
+		    move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 
-	    // upload file to existing TODO list
-	    $uploadedItems = open_file($saved_filename);
-	    // var_dump($uploadedItems);
-		$items = array_merge($items, $uploadedItems);
-		// var_dump($items);
+		    // upload file to existing TODO list
+		    $uploadedItems = open_file($saved_filename);
+		    // var_dump($uploadedItems);
+			$items = array_merge($items, $uploadedItems);
+			// var_dump($items);
+		} else {
+			echo "Please upload plain text file only.";
+		}
 	}
 
 	// Check if we saved a file
