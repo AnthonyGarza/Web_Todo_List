@@ -1,0 +1,38 @@
+/*
+this content is stored in a file named "site.css"
+in a directory named "css" in the web root
+*/
+
+/*
+Add a style to change the color of the headers on your page and make them underlined.
+Add a style to change the background color of the page.
+Add a style to change the list-style to something other than the default.
+Add a style to change the font for the entire page.
+*/
+
+h1, h2 {
+    color: #0C17E8;
+    text-decoration: underline;
+}
+
+body {
+	background-color: #0CE8E4;
+	font-family: cursive;
+	margin: 50px auto;
+    width: 500px;
+}
+
+ul {
+	font-family: Helvetica, Arial, Sans-Serif;
+	font-weight: bold;
+	list-style: lower-roman;
+	list-style-position: inside;
+}
+
+a {
+	color: #FFBA2A;
+}
+a:hover {
+	color: #F00;
+}
+
