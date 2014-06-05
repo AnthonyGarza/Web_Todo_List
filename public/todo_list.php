@@ -9,6 +9,8 @@
 <head>
 </head>
 	<title>TODO List</title>
+	<link rel="stylesheet" href="/css/site.css">
+
 	<?
 	define('FILENAME', 'data/todo.txt');
 
@@ -110,7 +112,7 @@
 	</form>
 
 
-	<h1>Upload File</h1>
+	<h2>Upload File</h2>
 
 	<form method="POST" enctype="multipart/form-data">
 	    <p>
